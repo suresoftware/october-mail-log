@@ -1,0 +1,6 @@
+plugin:
+    name: 'suresoftware.maillog::lang.plugin.name'
+    description: 'suresoftware.maillog::lang.plugin.description'
+    author: 'Sure Software'
+    icon: oc-icon-envelope-o
+    homepage: ''

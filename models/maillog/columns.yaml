@@ -1,0 +1,41 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+        sortable: true
+    to:
+        label: to
+        type: text
+        searchable: true
+        sortable: true
+    from:
+        label: from
+        type: text
+        searchable: true
+        sortable: true
+    subject:
+        label: subject
+        type: text
+        searchable: true
+        sortable: true
+    template:
+        label: template
+        type: text
+        searchable: true
+        sortable: true
+    sent:
+        label: sent
+        type: text
+        searchable: true
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        searchable: true
+        sortable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        searchable: true
+        sortable: true
