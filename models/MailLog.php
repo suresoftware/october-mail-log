@@ -7,21 +7,38 @@ use Model;
  */
 class MailLog extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
-
     /**
      * @var string The database table used by the model.
      */
     public $table = 'suresoftware_maillog_log';
 
     /**
-     * @var array Validation rules
-     */
-    public $rules = [
-    ];
-
-    /**
      * @var array Guarded fields
      */
     protected $guarded = [];
+
+    /**
+     * @var array Attribute names to encode and decode using JSON.
+     */
+    protected $jsonable = ['attachments'];
+
+    protected $hiddenWhenEmpty = [
+        'attachments',
+        'cc',
+        'bcc',
+    ];
+
+    public function getAttachmentsCountAttribute()
+    {
+        return count($this->attachments);
+    }
+
+    public function filterFields($fields, $context = null)
+    {
+        foreach ($this->hiddenWhenEmpty as $field) {
+            if (empty($fields->{$field}->value)) {
+                $fields->{$field}->hidden = true;
+            }
+        }
+    }
 }

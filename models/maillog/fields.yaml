@@ -1,0 +1,38 @@
+fields:
+    subject:
+        label: Subject
+        type: text
+
+    body:
+        label: Body
+        type: partial
+
+secondaryTabs:
+    fields:
+        created_at:
+            label: Send at
+            type: text
+
+        from:
+            label: From
+            type: text
+
+        to:
+            label: To
+            type: text
+
+        cc:
+            label: CC
+            type: text
+
+        bcc:
+            label: BCC
+            type: text
+
+        template:
+            label: Template
+            type: text
+
+        attachments:
+            label: Attachments
+            type: partial

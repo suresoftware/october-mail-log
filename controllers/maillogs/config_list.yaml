@@ -12,8 +12,10 @@ showSetup: true
 showCheckboxes: true
 defaultSort:
     column: created_at
-    direction: asc
+    direction: desc
 toolbar:
     buttons: list_toolbar
     search:
         prompt: 'backend::lang.list.search_prompt'
+
+recordUrl: 'suresoftware/maillog/maillogs/preview/:id'
