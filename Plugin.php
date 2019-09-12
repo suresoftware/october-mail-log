@@ -2,7 +2,7 @@
 
 use Backend\Facades\Backend;
 use Illuminate\Support\Facades\Event;
-use SureSoftware\MailLog\Classes\CreateMailLog;
+use SureSoftware\MailLog\Models\MailLog;
 use System\Classes\PluginBase;
 use System\Classes\SettingsManager;
 
@@ -16,7 +16,7 @@ class Plugin extends PluginBase
     {
         Event::listen('mailer.send', function ($mailer, $view, \Illuminate\Mail\Message $message) {
             try {
-                (new CreateMailLog)->handle($mailer, $view, $message);
+                (new MailLog)->createFromMailerSendEvent($mailer, $view, $message);
             } catch (\Exception $e) {
                 // Loggers should never trigger exceptions
             }

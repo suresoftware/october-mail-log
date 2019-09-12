@@ -3,6 +3,6 @@
 1.0.2:
     - 'Created table suresoftware_maillog_log'
     - builder_table_create_suresoftware_maillog_log.php
-1.0.3:
+1.1.0:
     - 'Store mail content, attachments list, CC & BCC fields'
     - add_body_attachments_cc_fields_to_log_table.php

@@ -1,6 +1,10 @@
 <?php namespace SureSoftware\MailLog\Models;
 
+use Illuminate\Mail\Message;
 use Model;
+use October\Rain\Mail\Mailer;
+use Swift_Attachment;
+use Swift_Message;
 
 /**
  * Model
@@ -28,6 +32,32 @@ class MailLog extends Model
         'bcc',
     ];
 
+    /**
+     * @param Mailer  $mailer
+     * @param string  $view
+     * @param Message $message
+     *
+     * @return $this
+     */
+    public function createFromMailerSendEvent($mailer, $view, Message $message)
+    {
+        $mail = $message->getSwiftMessage();
+
+        $this->fill([
+            'to'          => $this->formatEmails($mail->getTo()),
+            'cc'          => $this->formatEmails($mail->getCc()),
+            'bcc'         => $this->formatEmails($mail->getBcc()),
+            'from'        => $this->formatEmails($mail->getFrom()),
+            'subject'     => $mail->getSubject(),
+            'body'        => $mail->getBody(),
+            'template'    => $view,
+            'sent'        => true,
+            'attachments' => $this->extractAttachments($mail),
+        ])->save();
+
+        return $this;
+    }
+
     public function getAttachmentsCountAttribute()
     {
         return count($this->attachments);
@@ -40,5 +70,33 @@ class MailLog extends Model
                 $fields->{$field}->hidden = true;
             }
         }
+    }
+
+    /**
+     * @param $contacts
+     *
+     * @return string|void
+     */
+    private function formatEmails($contacts)
+    {
+        if (is_array($contacts)) {
+            return implode(", ", array_keys((array)$contacts));
+        }
+    }
+
+    /**
+     * @param Swift_Message $mail
+     *
+     * @return \October\Rain\Support\Collection
+     */
+    private function extractAttachments(Swift_Message $mail)
+    {
+        return collect($mail->getChildren())->filter(function ($item) {
+            return $item instanceof Swift_Attachment;
+        })->map(function (Swift_Attachment $attachment) {
+            return [
+                'name' => $attachment->getFilename(),
+            ];
+        });
     }
 }
