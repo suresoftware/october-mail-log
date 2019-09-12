@@ -4,6 +4,12 @@ columns:
         type: number
         searchable: true
         sortable: true
+        invisible: true
+    subject:
+        label: subject
+        type: text
+        searchable: true
+        sortable: true
     to:
         label: to
         type: text
@@ -14,23 +20,18 @@ columns:
         type: text
         searchable: true
         sortable: true
-    subject:
-        label: subject
-        type: text
-        searchable: true
-        sortable: true
     template:
         label: template
         type: text
         searchable: true
         sortable: true
-    sent:
-        label: sent
+    attachments_count:
+        label: Attachments
         type: text
-        searchable: true
-        sortable: true
+        searchable: false
+        sortable: false
     created_at:
-        label: created_at
-        type: datetime
+        label: Send at
+        type: text
         searchable: true
         sortable: true

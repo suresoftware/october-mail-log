@@ -1,0 +1,10 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: MailLog
+form: $/suresoftware/maillog/models/maillog/fields.yaml
+modelClass: SureSoftware\MailLog\Models\MailLog
+
+preview:
+    title: View MailLog

@@ -1,0 +1,22 @@
+<iframe id="mailIframe" style="width:100%;border: 1px solid #eee;"><?= $model->body; ?></iframe>
+
+<script id="mailBody" type="text/html">
+    <?= $model->body; ?>
+</script>
+
+<script>
+    (function ($) {
+        var iframe = $('#mailIframe');
+        var mailBody = $('#mailBody');
+
+        $(document).render(function () {
+            var iframeContent = iframe.contents().find('html');
+            iframeContent.html(mailBody.html());
+            iframe.height(iframeContent.height());
+
+            setTimeout(function(){
+                iframe.height(iframeContent.height());
+            }, 10);
+        })
+    })(window.jQuery);
+</script>
