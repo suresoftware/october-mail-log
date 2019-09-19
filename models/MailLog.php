@@ -60,7 +60,11 @@ class MailLog extends Model
 
     public function getAttachmentsCountAttribute()
     {
-        return count($this->attachments);
+        if ($this->attachments === null || $this->attachments === 0) {
+                return 0;
+        } else {
+                return count($this->attachments);
+        }
     }
 
     public function filterFields($fields, $context = null)
