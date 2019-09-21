@@ -6,3 +6,5 @@
 1.1.0:
     - 'Store mail content, attachments list, CC & BCC fields'
     - add_body_attachments_cc_fields_to_log_table.php
+1.1.1:
+    - 'Updated /models/MailLog.php - Fixes issue count(): Parameter must be an array or an object that implements Countable'
