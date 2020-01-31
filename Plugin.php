@@ -2,6 +2,7 @@
 
 use Backend\Facades\Backend;
 use Illuminate\Support\Facades\Event;
+use SureSoftware\Maillog\Console\Purge;
 use SureSoftware\MailLog\Models\MailLog;
 use System\Classes\PluginBase;
 use System\Classes\SettingsManager;
@@ -26,7 +27,17 @@ class Plugin extends PluginBase
     public function registerSettings()
     {
         return [
-            'mailLog' => [
+            'settings' => [
+                'label'       => "Mail Log",
+                'description' => 'Purge email settings',
+                'category'    => SettingsManager::CATEGORY_CMS,
+                'icon'        => 'icon-envelope-o',
+                'class'       => Models\Settings::class,
+                'order'       => 500,
+                'keywords'    => 'Mail Log purge',
+                'permissions' => ['system.access_logs'],
+            ],
+            'mailLog'  => [
                 'label'       => 'Mail Log',
                 'description' => 'View all outgoing mail with their outgoing timestamps and email addresses',
                 'category'    => SettingsManager::CATEGORY_LOGS,
@@ -36,6 +47,17 @@ class Plugin extends PluginBase
                 'keywords'    => 'mail log',
                 'permissions' => ['system.access_logs'],
             ],
+
         ];
+    }
+
+    public function register()
+    {
+        $this->registerConsoleCommand('maillog:purge', Purge::class);
+    }
+
+    public function registerSchedule($schedule)
+    {
+        $schedule->command(Purge::class)->daily();
     }
 }

@@ -1,0 +1,7 @@
+fields:
+    purge:
+        label: 'Purge email after'
+        comment: 'in days'
+        span: auto
+        default: 180
+        type: number
