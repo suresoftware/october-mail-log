@@ -13,10 +13,26 @@ class Purge extends Command
 
     public function handle()
     {
+        $dayToPurge = Settings::get('purge', 180);
+        if ($this->argument('number_of_days')) {
+            $dayToPurge = (int) $this->argument('number_of_days');
+        }
+
         MailLog::whereDate(
-            'created_at', '<=', now()->subDays(Settings::get('purge', 180))
+            'created_at', '<=', now()->subDays($dayToPurge)
         )->delete();
 
         $this->info('Maillog purged');
+    }
+
+    /**
+     * Get the console command arguments.
+     * @return array
+     */
+    protected function getArguments()
+    {
+        return [
+            ['number_of_days', InputArgument::OPTIONAL, 'Number of days to purge'],
+        ];
     }
 }
