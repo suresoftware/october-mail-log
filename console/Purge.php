@@ -31,7 +31,7 @@ class Purge extends Command
     protected function getArguments()
     {
         return [
-            ['days', InputArgument::OPTIONAL, 'How old the mail has to be before it is purged. Default = 30'],
+            ['days', InputArgument::OPTIONAL, 'How old the mail has to be for it to be purged. Default = 30'],
         ];
     }
 }

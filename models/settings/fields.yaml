@@ -1,7 +1,7 @@
 fields:
     purge:
-        label: 'Purge email after'
-        comment: 'in days'
+        label: 'Keep logs for x Days'
+        comment: 'Number of days before the logs will be purged'
         span: auto
-        default: 180
+        default: 30
         type: number

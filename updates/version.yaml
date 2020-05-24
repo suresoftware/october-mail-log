@@ -10,3 +10,5 @@
     - 'Updated /models/MailLog.php - Fixes issue count(): Parameter must be an array or an object that implements Countable'
 1.1.2:
     - 'Add a command to purge the log after X days and a setting to configure it'
+1.2.0:
+    - 'Removed automatic mail purge'
