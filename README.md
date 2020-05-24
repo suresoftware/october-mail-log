@@ -4,16 +4,25 @@ This plugin provides a backend log for all the outgoing mail sent by the website
 subject, template and timestamp of the email that was sent. This is useful for debugging email sending issues and 
 auditing if mail was sent or not. Only mail that was successfully sent is tracked currently.
 
-### Documentation
+Logs by default are only retained for 30 days.
 
-There is no configuration for this plugin, simply install it and it will start running. It has currently been tested 
-with both the log and SMTP drivers. Please open an issue on the 
+## Documentation
+
+Simply install it and it will start running. It has currently been tested with both the log and SMTP drivers. Please open an issue on the 
 [GitHub Repository](https://github.com/suresoftware/october-mail-log) if you run into any other issues.
 
-### Future Features
-If demand exists, other features that can be added are:
+### Configuration
+
+You can change the number of days the log will be retained for in the "Mail Log Settings" area. The default is 30 days.
+
+### Commands
+
+`php artisan mailog:purge 30` Purge all mail logs after x number of days. Default is 30
+
+## Possible Future Features
+If you want any of these features, please request it on Github or open a PR
  - Statistics on sending
  - Tracking of failed emails that haven't sent 
  - Notify an admin if an email has failed to send (via other channels like Slack)
  - More detailed logging
- - Options for configuring what fields to log
+ - Options for configuring which fields to log

@@ -58,6 +58,6 @@ class Plugin extends PluginBase
 
     public function registerSchedule($schedule)
     {
-//        $schedule->command(Purge::class)->daily();
+        $schedule->command(Purge::class)->daily();
     }
 }
