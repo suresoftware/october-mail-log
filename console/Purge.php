@@ -13,16 +13,15 @@ class Purge extends Command
 
     public function handle()
     {
-        $dayToPurge = Settings::get('purge', 180);
-        if ($this->argument('number_of_days')) {
-            $dayToPurge = (int) $this->argument('number_of_days');
+        $days = Settings::get('purge', 30);
+        if ($this->argument('days')) {
+            $days = (int) $this->argument('days');
         }
 
-        MailLog::whereDate(
-            'created_at', '<=', now()->subDays($dayToPurge)
-        )->delete();
+        MailLog::whereDate('created_at', '<=', now()->subDays($days))
+            ->delete();
 
-        $this->info('Maillog purged');
+        $this->info('Purged all mail logs older than ' . $days . ' days');
     }
 
     /**
@@ -32,7 +31,7 @@ class Purge extends Command
     protected function getArguments()
     {
         return [
-            ['number_of_days', InputArgument::OPTIONAL, 'Number of days to purge'],
+            ['days', InputArgument::OPTIONAL, 'How old the mail has to be before it is purged. Default = 30'],
         ];
     }
 }
