@@ -28,13 +28,13 @@ class Plugin extends PluginBase
     {
         return [
             'settings' => [
-                'label'       => "Mail Log",
-                'description' => 'Purge email settings',
-                'category'    => SettingsManager::CATEGORY_CMS,
-                'icon'        => 'icon-envelope-o',
+                'label'       => "Mail Log Settings",
+                'description' => 'Mail Log purge command settings',
+                'category'    => SettingsManager::CATEGORY_LOGS,
+                'icon'        => 'icon-cog',
                 'class'       => Models\Settings::class,
-                'order'       => 500,
-                'keywords'    => 'Mail Log purge',
+                'order'       => 901,
+                'keywords'    => 'mail log purge',
                 'permissions' => ['system.access_logs'],
             ],
             'mailLog'  => [
@@ -58,6 +58,6 @@ class Plugin extends PluginBase
 
     public function registerSchedule($schedule)
     {
-        $schedule->command(Purge::class)->daily();
+//        $schedule->command(Purge::class)->daily();
     }
 }
