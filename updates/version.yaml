@@ -12,5 +12,4 @@
     - 'Add a command to purge the log after X days and a setting to configure it'
 1.2.0:
     - 'Removed automatic mail purge'
-2.0.0: !!!
-    - 'Added in automatic mail log purging. This will automatically purge mail logs that are 30 days or older by default'
+2.0.0: !!! 'Added in automatic mail log purging. This will automatically purge mail logs that are 30 days or older by default'
