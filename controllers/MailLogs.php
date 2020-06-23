@@ -17,7 +17,7 @@ class MailLogs extends Controller
     public $formConfig = 'config_form.yaml';
 
     public $requiredPermissions = [
-        'access_log',
+        'system.access_logs',
     ];
 
     /**
